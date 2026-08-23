@@ -1,0 +1,70 @@
+:root {
+  /* Color Palette - Premium Dark "Cyber Range" Theme */
+  --bg-color: #0a0e17;
+  --bg-surface: rgba(22, 28, 45, 0.7);
+  --bg-surface-hover: rgba(30, 38, 60, 0.8);
+  
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  
+  --accent-primary: #10b981; /* Emerald/Neon Green */
+  --accent-primary-hover: #059669;
+  --accent-secondary: #3b82f6; /* Cyber Blue */
+  --accent-danger: #ef4444;
+  
+  /* Glassmorphism & Borders */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(12px);
+  --shadow-neon: 0 0 15px rgba(16, 185, 129, 0.2);
+  --shadow-neon-hover: 0 0 25px rgba(16, 185, 129, 0.4);
+  
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.05), transparent 25%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Global utility classes */
+.glass-panel {
+  background: var(--bg-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

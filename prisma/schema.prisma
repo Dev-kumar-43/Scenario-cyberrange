@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ──────────────────────────────────────────────
+// Users table
+// Stores registered platform users.
+// ──────────────────────────────────────────────
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String   // bcrypt hash
+  role      Role     @default(STUDENT)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  activeSessions ActiveSession[]
+
+  @@map("users")
+}
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+// ──────────────────────────────────────────────
+// Lab Definitions table
+// Catalog of available labs/scenarios that can
+// be launched. Each row is a template, not a
+// running instance.
+// ──────────────────────────────────────────────
+model LabDefinition {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  description String?
+  dockerImage String       @map("docker_image")    // e.g. "vulnerables/web-dvwa:latest"
+  category    String?                               // e.g. "Web Exploitation", "Privilege Escalation"
+  difficulty  Difficulty   @default(BEGINNER)
+  exposedPort Int          @map("exposed_port")     // port the vulnerable service listens on inside the container
+  protocol    Protocol     @default(TCP)            // TCP for xterm/shell, VNC for desktop
+  cpuLimit    String       @default("500m") @map("cpu_limit")   // K8s CPU limit
+  memLimit    String       @default("256Mi") @map("mem_limit")  // K8s memory limit
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  activeSessions ActiveSession[]
+
+  @@map("lab_definitions")
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum Protocol {
+  TCP   // Terminal-based (xterm.js via WebSocket)
+  VNC   // Desktop-based (KasmVNC)
+}
+
+// ──────────────────────────────────────────────
+// Active Sessions table
+// Tracks every running lab instance. One row per
+// user-lab pair that is currently spun up in K3s.
+// ──────────────────────────────────────────────
+model ActiveSession {
+  id            String        @id @default(uuid())
+  userId        String        @map("user_id")
+  labId         String        @map("lab_id")
+  k8sNamespace  String        @map("k8s_namespace")    // e.g. "lab-<session-uuid>"
+  k8sPodName    String?       @map("k8s_pod_name")
+  traefikUrl    String?       @map("traefik_url")       // e.g. "ws://lab-<id>.local"
+  status        SessionStatus @default(PENDING)
+  startedAt     DateTime      @default(now()) @map("started_at")
+  stoppedAt     DateTime?     @map("stopped_at")
+
+  user User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lab  LabDefinition @relation(fields: [labId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, labId])  // A user can only have one active instance of a given lab
+  @@index([userId])
+  @@index([status])
+  @@map("active_sessions")
+}
+
+enum SessionStatus {
+  PENDING     // K8s manifest applied, waiting for pod
+  CREATING    // Pod is being pulled/created
+  RUNNING     // Pod is running, Traefik URL is live
+  STOPPING    // Teardown initiated
+  STOPPED     // Resources deleted
+  ERROR       // Something went wrong
+}
