@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Lab Workspace
+Comment=Open Active Scenario Workspace
+Exec=thunar /root/Lab
+Icon=folder-documents
+Terminal=false
+StartupNotify=true
+Categories=Utility;

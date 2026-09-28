@@ -1,0 +1,15 @@
+Sep 28 01:15:02 mail-core-01 dovecot: imap-login: Login: user=<linda.chen@apex-financial.corp>, method=PLAIN, rip=10.42.0.15, lip=10.42.0.2, mpid=14092, TLS, session=<a8f9c102>
+Sep 28 01:45:18 mail-core-01 dovecot: imap(linda.chen@apex-financial.corp)<14092><a8f9c102>: Logged out in=482 out=3210 deleted=0 expunged=0
+Sep 28 02:00:01 mail-core-01 postfix/anvil[12990]: statistics: max connection rate 2/60s for (smtp:10.42.0.15) at Sep 28 01:15:00
+Sep 28 03:08:11 mail-core-01 dovecot: auth: pam(linda.chen@apex-financial.corp,198.51.100.44): authentication failed: password mismatch (attempt 1/3)
+Sep 28 03:10:45 mail-core-01 dovecot: auth: pam(linda.chen@apex-financial.corp,198.51.100.44): authentication failed: password mismatch (attempt 2/3)
+Sep 28 03:14:22 mail-core-01 dovecot: imap-login: Login: user=<linda.chen@apex-financial.corp>, method=PLAIN, rip=198.51.100.44, lip=10.42.0.2, mpid=18412, TLS, session=<e771b904>
+Sep 28 03:15:09 mail-core-01 webmail-audit[18412]: user="linda.chen@apex-financial.corp" ip="198.51.100.44" action="SESSION_ELEVATE" client="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+Sep 28 03:16:34 mail-core-01 webmail-audit[18412]: user="linda.chen@apex-financial.corp" ip="198.51.100.44" action="INBOX_RULE_ADD" rule_id="persist_fwd_01" trigger="subject_contains:wire,payment,transfer" target="wire-ops-secure@executive-finance-verify.com" move_to="Trash"
+Sep 28 03:17:02 mail-core-01 webmail-audit[18412]: user="linda.chen@apex-financial.corp" ip="198.51.100.44" action="ADDRESS_BOOK_EXPORT" format="csv" count=342
+Sep 28 03:18:40 mail-core-01 dovecot: imap(linda.chen@apex-financial.corp)<18412><e771b904>: Logged out in=1240 out=45920 deleted=0 expunged=0
+Sep 28 03:19:10 mail-core-01 postfix/cleanup[19021]: 4A1B8C009F: message-id=<20260928031244.77192.qmail@mail.exec-corp-payroll.com>
+Sep 28 03:19:11 mail-core-01 postfix/qmgr[1280]: 4A1B8C009F: from=<cfo-ceo-office@exec-corp-payroll.com>, size=3812, nrcpt=1 (queue active)
+Sep 28 03:19:12 mail-core-01 postfix/local[19025]: 4A1B8C009F: to=<finance-desk@apex-financial.corp>, relay=local, delay=0.4, delays=0.02/0.01/0/0.37, dsn=2.0.0, status=sent (delivered to maildir)
+Sep 28 03:22:00 mail-core-01 webmail-audit[19450]: user="linda.chen@apex-financial.corp" ip="10.42.0.15" action="SESSION_LOGIN" status="OK"
+Sep 28 03:25:12 mail-core-01 webmail-audit[19450]: user="linda.chen@apex-financial.corp" ip="10.42.0.15" action="FLAG_REPORT_PHISH" message_id="4A1B8C009F" reason="Suspicious wire transfer instruction"

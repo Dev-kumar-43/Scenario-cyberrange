@@ -1,0 +1,707 @@
+/* Controlled Network Attack Scenario Environment Styles */
+
+.environmentContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: #050811;
+  color: #f8fafc;
+  overflow: hidden;
+  position: relative;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+/* 54px Top Bar Matching Screenshot */
+.topBar {
+  height: 54px;
+  background: rgba(5, 8, 17, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-card, rgba(255, 255, 255, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  flex-shrink: 0;
+  z-index: 50;
+  gap: 12px;
+}
+
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.backBtn {
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-card, rgba(255, 255, 255, 0.12));
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.backBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.scenarioTitle {
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.badgeRunning {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 16px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background-color: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.badgeIsolated {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 16px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background-color: rgba(0, 245, 212, 0.12);
+  border: 1px solid rgba(0, 245, 212, 0.3);
+  color: #00f5d4;
+  flex-shrink: 0;
+}
+
+/* Machine Switcher Segmented Control */
+.machineSwitcher {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.machineSwitchBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 7px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  white-space: nowrap;
+}
+
+.machineSwitchBtn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.machineSwitchBtnActiveKali {
+  border: 1px solid rgba(239, 68, 68, 0.6) !important;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
+}
+
+.machineSwitchBtnActiveUbuntu {
+  border: 1px solid rgba(2, 132, 199, 0.6) !important;
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.35);
+}
+
+.tagAttacker {
+  font-size: 0.58rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+  letter-spacing: 0.04em;
+}
+
+.tagTarget {
+  font-size: 0.58rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(2, 132, 199, 0.25);
+  color: #93c5fd;
+  letter-spacing: 0.04em;
+}
+
+.lockToggleBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.lockToggleBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.lockToggleBtnActive {
+  background: rgba(0, 245, 212, 0.15) !important;
+  border-color: rgba(0, 245, 212, 0.4) !important;
+  color: #00f5d4 !important;
+}
+
+/* Center Zone: Timer & Scale */
+.topBarCenter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.scaleBadge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: rgba(0, 245, 212, 0.1);
+  border: 1px solid rgba(0, 245, 212, 0.3);
+  color: #00f5d4;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Right Zone: Primary Actions */
+.topBarRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.missionBtn {
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.18), rgba(139, 92, 246, 0.25));
+  border: 1px solid rgba(0, 245, 212, 0.45);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.missionBtn:hover {
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.28), rgba(139, 92, 246, 0.35));
+  box-shadow: 0 0 14px rgba(0, 245, 212, 0.3);
+}
+
+.missionBtnActive {
+  background: rgba(0, 245, 212, 0.25) !important;
+  box-shadow: 0 0 14px rgba(0, 245, 212, 0.4) !important;
+}
+
+.pasteBtn {
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.2) 0%, rgba(59, 130, 246, 0.25) 100%);
+  border: 1px solid rgba(0, 245, 212, 0.5);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.pasteBtn:hover {
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.3) 0%, rgba(59, 130, 246, 0.35) 100%);
+}
+
+.terminalBtn {
+  padding: 6px 11px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 8px;
+  background: rgba(139, 92, 246, 0.18);
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  color: #c4b5fd;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.terminalBtn:hover {
+  background: rgba(139, 92, 246, 0.28);
+}
+
+.auditBtn {
+  padding: 6px 11px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 8px;
+  background: rgba(16, 185, 129, 0.16);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  color: #6ee7b7;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.auditBtn:hover {
+  background: rgba(16, 185, 129, 0.26);
+}
+
+.fullscreenBtn {
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00f5d4 0%, #3b82f6 100%);
+  color: #050811;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.fullscreenBtn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 12px rgba(0, 245, 212, 0.4);
+}
+
+.toolsBtn {
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-card, rgba(255, 255, 255, 0.12));
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolsBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.userPill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px 3px 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-card, rgba(255, 255, 255, 0.1));
+  border-radius: 20px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00f5d4, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #050811;
+  font-size: 0.75rem;
+}
+
+.signOutBtn {
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  color: #fb7185;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.signOutBtn:hover {
+  background: rgba(244, 63, 94, 0.22);
+}
+
+/* Viewport Area */
+.viewportContainer {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: #000000;
+  width: 100%;
+  height: 100%;
+}
+
+/* Single View Mode Frame */
+.desktopIframeSingle {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #000000;
+}
+
+/* Split View Mode Layout */
+.splitLayout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 4px;
+  background-color: #0a0f1d;
+}
+
+.splitPane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  background-color: #000000;
+  position: relative;
+}
+
+.splitPaneHeader {
+  height: 28px;
+  background: rgba(9, 14, 26, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.splitIframe {
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 28px);
+  border: none;
+  background-color: #000000;
+}
+
+/* Loading HUD */
+.loadingHud {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #050811;
+  background-image: radial-gradient(ellipse at 50% 40%, rgba(0, 245, 212, 0.08) 0%, rgba(5, 8, 17, 0.95) 75%);
+  padding: 2rem;
+  text-align: center;
+}
+
+.livePulseDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10b981;
+  animation: live-pulse-dot 1.5s infinite;
+}
+
+@keyframes live-pulse-dot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; filter: drop-shadow(0 0 6px rgba(0, 245, 212, 0.6)); }
+}
+
+/* ==========================================================================
+   BEC 3-Tab Workspace & LabEx Browser Bar Styles
+   ========================================================================== */
+
+/* 3-Tab Group in Top Bar */
+.becTabsGroup {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.becTabBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  white-space: nowrap;
+}
+
+.becTabBtn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.becTabBtnActiveDesktop {
+  border: 1px solid rgba(239, 68, 68, 0.6) !important;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
+}
+
+.becTabBtnActiveWebmail {
+  border: 1px solid rgba(2, 132, 199, 0.6) !important;
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.25) 0%, rgba(0, 245, 212, 0.2) 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.35);
+}
+
+.becTabBtnActiveBrowser {
+  border: 1px solid rgba(0, 245, 212, 0.6) !important;
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.25) 0%, rgba(59, 130, 246, 0.2) 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(0, 245, 212, 0.35);
+}
+
+.becTabPortBadge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.03em;
+}
+
+/* Zero-Unmount BEC Workspace Container */
+.becWorkspaceContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #050811;
+  overflow: hidden;
+}
+
+.becViewportPane {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  background-color: #000000;
+}
+
+/* Mini In-Browser Address Bar (LabEx Inspired) */
+.browserAddressBar {
+  height: 38px;
+  background: #0d1424;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 10px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.browserNavControls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.browserNavBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.browserNavBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.browserPortPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #94a3b8;
+  font-family: var(--font-mono, monospace);
+  white-space: nowrap;
+}
+
+.browserPortDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.browserUrlField {
+  flex: 1;
+  height: 26px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 8px;
+  min-width: 0;
+}
+
+.browserLockIcon {
+  font-size: 0.7rem;
+  color: #00f5d4;
+  flex-shrink: 0;
+}
+
+.browserUrlText {
+  font-size: 0.76rem;
+  color: #e2e8f0;
+  font-family: var(--font-mono, monospace);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.02em;
+}
+
+.browserActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.browserActionBtn {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.browserActionBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.emptyViewportNotice {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  background-color: #050811;
+}
+

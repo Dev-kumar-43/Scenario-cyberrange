@@ -1,0 +1,13 @@
+[
+  {
+    "id": "persist_fwd_01",
+    "name": "Auto-Archive Wire Instructions",
+    "condition": "Subject contains: wire, payment, transfer",
+    "action": "Forward copy to wire-ops-secure@executive-finance-verify.com and move original to Trash",
+    "target": "wire-ops-secure@executive-finance-verify.com",
+    "created_at": "2026-09-28 03:16:34 UTC",
+    "created_by_ip": "198.51.100.44",
+    "enabled": true,
+    "malicious": true
+  }
+]

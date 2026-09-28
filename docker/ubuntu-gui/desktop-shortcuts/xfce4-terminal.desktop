@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Terminal
+Comment=Open Workstation Command Shell
+Exec=xfce4-terminal
+Icon=utilities-terminal
+Path=/root
+Terminal=false
+StartupNotify=true
+Categories=System;TerminalEmulator;

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Incident Briefing
+Comment=Automatic Case Briefing for SOC Analyst
+Exec=mousepad /root/Desktop/Case_Files/INCIDENT_BRIEFING.txt
+Icon=accessories-text-editor
+Terminal=false
+StartupNotify=true
+Categories=Utility;TextEditor;

@@ -1,0 +1,49 @@
+================================================================================
+APEX FINANCIAL HOLDINGS - CYBER DEFENSE INCIDENT RESPONSE BRIEFING
+INCIDENT TICKET: #SEC-2026-BEC-9041
+CLASSIFICATION: CONFIDENTIAL / SOC TIER-2 INVESTIGATION
+================================================================================
+
+EXECUTIVE SUMMARY:
+At 03:25 UTC, Linda Chen (VP of Finance / Controller) reported receiving an
+unsolicited, urgent email purportedly from Arthur Vance (CEO) directing an
+immediate off-cycle escrow wire of $184,500.00 for a secret acquisition.
+
+The email exhibits telltale indicators of Business Email Compromise (BEC) and
+executive impersonation. Preliminary telemetry suggests the attacker may have
+also accessed corporate mail infrastructure.
+
+YOUR INVESTIGATION OBJECTIVES:
+--------------------------------------------------------------------------------
+[MILESTONE 1] THREAT ACTOR INFRASTRUCTURE IDENTIFICATION
+  * Inspect the mail server authentication log:
+      ~/Desktop/Case_Files/mail_auth.log
+  * Identify the unauthorized external IP address that breached Linda Chen's account.
+  * Identify the spoofed lookalike domain used in the From header.
+
+[MILESTONE 2] MALICIOUS EMAIL HEADER FORENSICS
+  * Inspect the raw email sample:
+      ~/Desktop/Case_Files/urgent_wire.eml
+  * Or review it directly in the Webmail tab (Mailpit Web Client).
+  * Locate the attacker's covert response channel (Reply-To address).
+  * Analyze the SPF and DKIM authentication failure results.
+
+[MILESTONE 3] PERSISTENCE & INBOX RULE REMOVAL
+  * The threat actor created an automated inbox forwarding rule to silently
+    intercept payment confirmations while hiding incoming replies in the Trash.
+  * Open the "Browser" tab to access the Apex Executive Portal / Mail Rule Auditor
+    (or access via http://127.0.0.1:8080).
+  * Inspect active mail filtering rules.
+  * Delete the unauthorized persistence rule targeting the attacker's drop box.
+
+INVESTIGATION ARTIFACTS ON THIS WORKSTATION:
+  * ~/Desktop/Case_Files/urgent_wire.eml   (Raw forensic message)
+  * ~/Desktop/Case_Files/mail_auth.log    (Server authentication & audit log)
+  * Webmail client:                       Available on Webmail Tab (port 8025)
+  * Portal & Rule Auditor:                Available on Browser Tab (port 8080)
+
+FINAL VICTORY CRITERIA:
+Once the malicious forwarding rule has been deleted, verify your progress via the
+floating Mission Control orb or the portal verification endpoint to obtain your
+official CyberRange verification flag: FLAG{...}.
+================================================================================

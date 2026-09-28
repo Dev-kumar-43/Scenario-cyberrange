@@ -1,0 +1,109 @@
+# ~/.bashrc: Cyber-Range AttackBox Custom Shell Configuration
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# History settings
+HISTCONTROL=ignoreboth
+shopt -s histappend
+HISTSIZE=5000
+HISTFILESIZE=10000
+
+# Check window size after each command
+shopt -s checkwinsize
+
+# Colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Colors
+reset="\[\033[0m\]"
+c_dim="\[\033[2m\]"
+c_blue="\[\033[1;34m\]"
+c_cyan="\[\033[1;36m\]"
+c_green="\[\033[1;32m\]"
+c_red="\[\033[1;31m\]"
+c_white="\[\033[1;37m\]"
+c_path="\[\033[0;33m\]"
+
+# Two-line Kali Cyber-Range Prompt
+PS1="${c_blue}┌──(${c_cyan}cr-student${c_dim}㉿${c_green}attackbox${c_blue})-[${c_path}\w${c_blue}]\n${c_blue}└─${c_cyan}\$${reset} "
+
+# Enable color support for ls and commands
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Essential Aliases
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# Cyber-Range Workstation Helpers
+alias myip="ip -4 -br -c addr show | grep -v '127.0.0.1'"
+alias serve="python3 -m http.server"
+alias ports="netstat -tulpn 2>/dev/null || ss -tulpn"
+alias tools="cd ~/Tools && ls -la"
+alias lab="cd ~/Lab"
+alias evidence="cd ~/Evidence"
+alias notes="cd ~/Notes"
+
+# Helper Functions
+listener() {
+    local port="${1:-4444}"
+    echo -e "\033[1;32m[*] Starting netcat listener on 0.0.0.0:${port}...\033[0m"
+    nc -lvnp "$port"
+}
+
+scan() {
+    if [ -z "$1" ]; then
+        echo -e "\033[1;31m[-] Usage: scan <target-ip-or-host>\033[0m"
+        return 1
+    fi
+    local target="$1"
+    shift
+    echo -e "\033[1;34m[*] Scanning target ${target} (TCP SYN + Service Detection + Default Scripts)...\033[0m"
+    nmap -sC -sV -oN "nmap_${target}_$(date +%s).txt" "$target" "$@"
+}
+
+webscan() {
+    if [ -z "$1" ]; then
+        echo -e "\033[1;31m[-] Usage: webscan <http://target:port>\033[0m"
+        return 1
+    fi
+    local url="$1"
+    echo -e "\033[1;34m[*] Running quick gobuster against ${url}...\033[0m"
+    gobuster dir -u "$url" -w /usr/share/wordlists/dirb/common.txt -q
+}
+
+# Environment
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/Scripts"
+export EDITOR=nano
+
+# Interactive Welcome Banner
+if [ -t 1 ]; then
+    clear
+    echo -e "\033[1;36m  ┌─────────────────────────────────────────────────────────────┐\033[0m"
+    echo -e "\033[1;36m  │\033[1;37m   CYBER-RANGE ATTACKBOX  \033[1;34m//\033[0;37m OFFENSIVE SECURITY WORKSTATION    \033[1;36m│\033[0m"
+    echo -e "\033[1;36m  └─────────────────────────────────────────────────────────────┘\033[0m"
+    
+    IP_LIST=$(ip -4 -br addr show | grep -v '127.0.0.1' | awk '{print $1 ": \033[1;32m" $3 "\033[0m"}' | paste -sd ", " -)
+    if [ -z "$IP_LIST" ]; then
+        IP_LIST="No external IP detected"
+    fi
+    echo -e "  \033[1;34m► Network:\033[0m    ${IP_LIST}"
+    echo -e "  \033[1;34m► Workspace:\033[0m  ~/Lab (Work) | ~/Evidence (Proofs) | ~/Tools (Utilities)"
+    echo -e "  \033[1;34m► Wordlists:\033[0m  /usr/share/wordlists (or ~/Tools/05-wordlists)"
+    echo -e "  \033[1;34m► Shortcuts:\033[0m  \033[1;33mscan <ip>\033[0m | \033[1;33mserve <port>\033[0m | \033[1;33mlistener <port>\033[0m | \033[1;33mmyip\033[0m"
+    echo ""
+fi

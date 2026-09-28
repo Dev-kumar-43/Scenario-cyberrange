@@ -1,0 +1,79 @@
+# ~/.bashrc: Cyber-Range Ubuntu Target — Corporate Workstation Shell Configuration
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# History settings
+HISTCONTROL=ignoreboth
+shopt -s histappend
+HISTSIZE=5000
+HISTFILESIZE=10000
+
+# Check window size after each command
+shopt -s checkwinsize
+
+# Colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Colors — Ubuntu warm palette
+reset="\[\033[0m\]"
+c_orange="\[\033[1;38;5;208m\]"
+c_amber="\[\033[0;33m\]"
+c_white="\[\033[1;37m\]"
+c_dim="\[\033[2m\]"
+c_path="\[\033[0;38;5;179m\]"
+
+# Ubuntu-style prompt: analyst@ubuntu-target:~/path$
+PS1="${c_orange}analyst${c_dim}@${c_amber}ubuntu-target${reset}:${c_path}\w${c_orange}\$${reset} "
+
+# Enable color support for ls and commands
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Essential Aliases
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# Corporate Workstation Helpers
+alias myip="ip -4 -br -c addr show | grep -v '127.0.0.1'"
+alias ports="netstat -tulpn 2>/dev/null || ss -tulpn"
+alias docs="cd ~/Documents"
+alias projects="cd ~/Projects"
+alias logs="cd ~/Logs"
+alias notes="cd ~/Notes"
+alias sysinfo="echo '--- System ---' && uname -a && echo '--- Memory ---' && free -h && echo '--- Disk ---' && df -h / && echo '--- Network ---' && ip -4 -br addr show"
+
+# Environment
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export EDITOR=mousepad
+
+# Interactive Welcome Banner
+if [ -t 1 ]; then
+    clear
+    echo -e "\033[38;5;208m  ┌─────────────────────────────────────────────────────────────┐\033[0m"
+    echo -e "\033[38;5;208m  │\033[1;37m   CYBER-RANGE TARGET NODE  \033[38;5;208m//\033[0;37m CORPORATE WORKSTATION          \033[38;5;208m│\033[0m"
+    echo -e "\033[38;5;208m  └─────────────────────────────────────────────────────────────┘\033[0m"
+    
+    IP_LIST=$(ip -4 -br addr show | grep -v '127.0.0.1' | awk '{print $1 ": \033[38;5;208m" $3 "\033[0m"}' | paste -sd ", " -)
+    if [ -z "$IP_LIST" ]; then
+        IP_LIST="No external IP detected"
+    fi
+    echo -e "  \033[38;5;208m► Network:\033[0m    ${IP_LIST}"
+    echo -e "  \033[38;5;208m► Workspace:\033[0m  ~/Documents | ~/Projects | ~/Logs | ~/Notes"
+    echo -e "  \033[38;5;208m► Services:\033[0m   HTTP Intranet (port 80) | SSH (port 22)"
+    echo -e "  \033[38;5;208m► Shortcuts:\033[0m  \033[1;33msysinfo\033[0m | \033[1;33mmyip\033[0m | \033[1;33mports\033[0m | \033[1;33mlogs\033[0m"
+    echo ""
+fi

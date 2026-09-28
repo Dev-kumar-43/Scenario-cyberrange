@@ -1,0 +1,508 @@
+.container {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: calc(100vh - 80px);
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--blue, #2E4C6D);
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--muted, #64748B);
+  max-width: 800px;
+  line-height: 1.5;
+}
+
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface, #F9FAFC);
+  border: 1px solid rgba(46, 76, 109, 0.16);
+  padding: 10px 16px;
+  border-radius: 10px;
+  min-width: 320px;
+  transition: all 0.2s ease;
+}
+
+.searchBox:focus-within {
+  border-color: var(--blue, #2E4C6D);
+  box-shadow: 0 0 0 3px rgba(46, 76, 109, 0.12);
+}
+
+.searchInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #1e293b;
+  width: 100%;
+}
+
+.categoryPills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(46, 76, 109, 0.14);
+  background: var(--surface, #F9FAFC);
+  color: var(--muted, #64748B);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill:hover {
+  border-color: var(--blue, #2E4C6D);
+  color: var(--blue, #2E4C6D);
+}
+
+.activePill {
+  background: var(--blue, #2E4C6D);
+  color: #ffffff !important;
+  border-color: var(--blue, #2E4C6D);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--surface, #F9FAFC);
+  border: 1px solid rgba(46, 76, 109, 0.12);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(46, 76, 109, 0.12);
+  border-color: rgba(46, 76, 109, 0.25);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.badgeCategory {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(46, 76, 109, 0.08);
+  color: var(--blue, #2E4C6D);
+}
+
+.badgeDifficulty {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.cardTagline {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue, #2E4C6D);
+  margin-bottom: 12px;
+}
+
+.cardDescription {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.machinesSection {
+  background: rgba(238, 242, 247, 0.6);
+  border: 1px solid rgba(46, 76, 109, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 20px;
+}
+
+.machinesLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted, #64748B);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.machineChips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.machineChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.badgeCategoryEmail {
+  background: rgba(8, 145, 178, 0.12);
+  color: #0891b2;
+  border: 1px solid rgba(8, 145, 178, 0.3);
+}
+
+.roleAttacker {
+  color: #dc2626;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.roleTarget {
+  color: #0284c7;
+  background: #f0f9ff;
+  border-color: #bae6fd;
+}
+
+.roleMailpit {
+  color: #0284c7;
+  background: #f0f9ff;
+  border-color: #bae6fd;
+}
+
+.roleGophish {
+  color: #d97706;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.metaGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted, #64748B);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btnPrimary {
+  background: var(--blue, #2E4C6D);
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary:hover {
+  background: var(--blueDark, #213954);
+  box-shadow: 0 4px 12px rgba(46, 76, 109, 0.25);
+}
+
+/* Modal Detail & Topology Styles */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modalContent {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  padding: 24px 32px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.modalBody {
+  padding: 32px;
+  flex: 1;
+}
+
+.modalCloseBtn {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+}
+
+.modalCloseBtn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Topology Diagram Component */
+.topologyContainer {
+  background: #0f172a;
+  border-radius: 14px;
+  padding: 24px;
+  color: #ffffff;
+  margin: 24px 0;
+  border: 1px solid #1e293b;
+}
+
+.topologyHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.topologyDiagram {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 0;
+  position: relative;
+}
+
+.topologyNode {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 16px 20px;
+  min-width: 180px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.nodeAttacker {
+  border-color: #ef4444;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+}
+
+.nodeTarget {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
+}
+
+.nodeTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 4px;
+}
+
+.nodeRole {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.nodeIp {
+  font-family: monospace;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.topologyWire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 200px;
+}
+
+.wireLine {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #ef4444, #0ea5e9);
+  position: relative;
+}
+
+.wirePulse {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.wireLabel {
+  font-size: 11px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+.topologyFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #1e293b;
+  padding-top: 16px;
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.isolatedBadge {
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Provisioning Progress Stepper */
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.stepIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.stepPending {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.stepActive {
+  background: #0284c7;
+  color: #ffffff;
+  animation: pulse 1.5s infinite;
+}
+
+.stepDone {
+  background: #10b981;
+  color: #ffffff;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
+}

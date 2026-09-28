@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Security Tools
+Comment=Open AttackBox Security Tools Arsenal
+Exec=thunar /root/Tools
+Icon=package-x-generic
+Terminal=false
+StartupNotify=true
+Categories=Utility;System;

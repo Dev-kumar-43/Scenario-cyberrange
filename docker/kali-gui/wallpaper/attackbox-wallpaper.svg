@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 1440" width="2560" height="1440">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="75%" fx="50%" fy="45%">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="40%" stop-color="#0b0f19" />
+      <stop offset="100%" stop-color="#05070b" />
+    </radialGradient>
+
+    <!-- Subtle Accent Glow -->
+    <radialGradient id="glowCyan" cx="50%" cy="48%" r="40%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.07" />
+      <stop offset="60%" stop-color="#4facfe" stop-opacity="0.02" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="glowPurple" cx="65%" cy="35%" r="35%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Linear Accents -->
+    <linearGradient id="shieldStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.3" />
+    </linearGradient>
+
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="70%" stop-color="#94a3b8" />
+      <stop offset="100%" stop-color="#64748b" />
+    </linearGradient>
+
+    <!-- Hexagon Pattern -->
+    <pattern id="hexGrid" width="48" height="83.13843876" patternUnits="userSpaceOnUse">
+      <path d="M48 0 L24 13.856 L0 0 L0 27.713 L24 41.569 L48 27.713 Z M0 41.569 L24 55.426 L48 41.569 L48 69.282 L24 83.138 L0 69.282 Z" 
+            fill="none" stroke="#38bdf8" stroke-width="0.75" stroke-opacity="0.035" />
+    </pattern>
+
+    <!-- Dot Matrix Pattern -->
+    <pattern id="dotGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="16" cy="16" r="1" fill="#94a3b8" fill-opacity="0.04" />
+    </pattern>
+  </defs>
+
+  <!-- Base Dark Canvas -->
+  <rect width="2560" height="1440" fill="url(#bgGrad)" />
+  <rect width="2560" height="1440" fill="url(#hexGrid)" />
+  <rect width="2560" height="1440" fill="url(#dotGrid)" />
+  <rect width="2560" height="1440" fill="url(#glowCyan)" />
+  <rect width="2560" height="1440" fill="url(#glowPurple)" />
+
+  <!-- Subtle Geometric Technical Frame Elements -->
+  <!-- Top Corners -->
+  <path d="M 60 100 L 60 60 L 100 60" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.2" />
+  <path d="M 2500 100 L 2500 60 L 2460 60" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.2" />
+  <!-- Bottom Corners -->
+  <path d="M 60 1340 L 60 1380 L 100 1380" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.2" />
+  <path d="M 2500 1340 L 2500 1380 L 2460 1380" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.2" />
+
+  <!-- Top Center Technical Header (very subtle) -->
+  <g opacity="0.25">
+    <line x1="1080" y1="60" x2="1480" y2="60" stroke="#38bdf8" stroke-width="1" />
+    <circle cx="1080" cy="60" r="2.5" fill="#38bdf8" />
+    <circle cx="1480" cy="60" r="2.5" fill="#38bdf8" />
+    <text x="1280" y="52" text-anchor="middle" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-size="10" fill="#38bdf8" letter-spacing="4">SECURE ENVIRONMENT // ISOLATED SANDBOX</text>
+  </g>
+
+  <!-- Center Watermark Logo & Emblem -->
+  <g transform="translate(1280, 680)" opacity="0.85">
+    <!-- Outer Decorative Tech Rings -->
+    <circle cx="0" cy="-60" r="140" fill="none" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.08" stroke-dasharray="6, 8" />
+    <circle cx="0" cy="-60" r="115" fill="none" stroke="#6366f1" stroke-width="1" stroke-opacity="0.12" />
+
+    <!-- Stylized Cyber Shield / Terminal Icon -->
+    <g transform="translate(0, -60)">
+      <!-- Shield Silhouette -->
+      <path d="M 0 -65 
+               C 35 -65, 60 -48, 60 -15 
+               C 60 35, 25 70, 0 85 
+               C -25 70, -60 35, -60 -15 
+               C -60 -48, -35 -65, 0 -65 Z" 
+            fill="#0f172a" fill-opacity="0.6" stroke="url(#shieldStroke)" stroke-width="2.5" stroke-linejoin="round" />
+
+      <!-- Inner Cross / Target Details -->
+      <path d="M 0 -45 L 0 65" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3, 3" />
+      <path d="M -40 -15 L 40 -15" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3, 3" />
+
+      <!-- Inner Core Glyph: Terminal Prompt Arrow & Node -->
+      <path d="M -18 -26 L -4 -12 L -18 2" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      <line x1="-2" y1="2" x2="16" y2="2" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" />
+      <circle cx="0" cy="35" r="3.5" fill="#38bdf8" />
+    </g>
+
+    <!-- Typography -->
+    <!-- Primary Title -->
+    <text x="0" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700" font-size="34" fill="url(#textGrad)" letter-spacing="10">CYBER RANGE</text>
+    
+    <!-- Subtitle Badge -->
+    <rect x="-140" y="115" width="280" height="26" rx="4" fill="#1e293b" fill-opacity="0.6" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.3" />
+    <text x="0" y="132" text-anchor="middle" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-weight="500" font-size="12" fill="#38bdf8" letter-spacing="4">ATTACKBOX WORKSTATION</text>
+    
+    <text x="0" y="168" text-anchor="middle" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-size="11" fill="#64748b" letter-spacing="2">OFFENSIVE SECURITY • FORENSICS • RECON</text>
+  </g>
+
+  <!-- Bottom Left Technical Info -->
+  <g transform="translate(70, 1370)" opacity="0.35">
+    <text x="0" y="0" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-size="11" fill="#94a3b8" letter-spacing="2">HOST: KALI-ATTACKBOX // DISP: :0 // VNC-RANDR ENABLED</text>
+  </g>
+
+  <!-- Bottom Right Status Indicator -->
+  <g transform="translate(2490, 1370)" opacity="0.35">
+    <text x="0" y="0" text-anchor="end" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-size="11" fill="#94a3b8" letter-spacing="2">SYSTEM STATUS: OPTIMAL // ENCRYPTED SESSION</text>
+    <circle cx="15" cy="-4" r="3.5" fill="#10b981" />
+  </g>
+</svg>

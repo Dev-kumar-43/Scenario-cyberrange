@@ -1,0 +1,75 @@
+From: "Arthur Vance" <cfo-ceo-office@exec-corp-payroll.com>
+Reply-To: wire-ops-secure@executive-finance-verify.com
+To: "Linda Chen" <finance-desk@apex-financial.corp>
+Subject: URGENT: Confidential Acquisition Wire Instruction - Transaction #APX-99412
+Date: Mon, 28 Sep 2026 03:12:44 -0400
+Message-ID: <20260928031244.77192.qmail@mail.exec-corp-payroll.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----=_Part_99182_4829104.1727507564"
+Received: from mail.exec-corp-payroll.com (mail.exec-corp-payroll.com [198.51.100.44])
+	by mail.apex-financial.corp (Postfix/ApexMX) with ESMTP id 4A1B8C009F
+	for <finance-desk@apex-financial.corp>; Mon, 28 Sep 2026 03:12:46 -0400 (EDT)
+Received-SPF: softfail (mail.apex-financial.corp: domain of cfo-ceo-office@exec-corp-payroll.com does not designate 198.51.100.44 as permitted sender) client-ip=198.51.100.44;
+Authentication-Results: mail.apex-financial.corp;
+	dkim=fail (bad signature / unknown key) header.i=@exec-corp-payroll.com;
+	spf=softfail (mail.apex-financial.corp: domain of cfo-ceo-office@exec-corp-payroll.com does not designate 198.51.100.44 as permitted sender) smtp.mailfrom=cfo-ceo-office@exec-corp-payroll.com;
+	dmarc=fail (p=none dis=none) header.from=exec-corp-payroll.com
+X-Originating-IP: [198.51.100.44]
+X-Priority: 1 (Highest)
+X-Mailer: Apex Corporate Secure Mailer v4.12
+
+------=_Part_99182_4829104.1727507564
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Linda,
+
+I am currently in an all-day confidential executive board session regarding the strategic acquisition of NorthStar Analytics.
+
+Because of SEC blackout compliance, this matter cannot be discussed over company Slack or regular office channels. I need an urgent escrow closing wire of $184,500.00 processed before 10:00 AM EST today to lock in settlement.
+
+Please reply directly to this email so my executive assistant can provide the outside escrow beneficiary banking coordinates. Do NOT call my cell phone as I am chairing the executive session until 1:00 PM.
+
+Confirm receipt immediately.
+
+Best regards,
+Arthur Vance
+Chief Executive Officer
+Apex Financial Holdings Corp.
+
+------=_Part_99182_4829104.1727507564
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body { font-family: Arial, sans-serif; color: #222; line-height: 1.6; }
+.banner { background: #b91c1c; color: #fff; padding: 6px 12px; font-size: 11px; font-weight: bold; border-radius: 4px; display: inline-block; margin-bottom: 12px; }
+.callout { background: #fef2f2; border-left: 4px solid #ef4444; padding: 12px; margin: 16px 0; }
+.footer { font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 24px; padding-top: 12px; }
+</style>
+</head>
+<body>
+<div class="banner">EXTERNAL SENDER / URGENT EXECUTIVE COMMUNICATION</div>
+<p>Linda,</p>
+<p>I am currently in an all-day confidential executive board session regarding the strategic acquisition of <strong>NorthStar Analytics</strong>.</p>
+<div class="callout">
+  <strong>MANDATORY CLOSING REQUIREMENT:</strong><br>
+  Because of SEC blackout compliance, this matter cannot be discussed over company Slack or regular office channels. I need an urgent escrow closing wire of <strong>$184,500.00 USD</strong> processed before 10:00 AM EST today to lock in settlement.
+</div>
+<p>Please reply directly to this email so my executive assistant can provide the outside escrow beneficiary banking coordinates. Do NOT call my cell phone as I am chairing the executive session until 1:00 PM.</p>
+<p>Confirm receipt immediately.</p>
+<br>
+<p>
+  <strong>Arthur Vance</strong><br>
+  Chief Executive Officer<br>
+  Apex Financial Holdings Corp.
+</p>
+<div class="footer">
+  CONFIDENTIALITY NOTICE: This transmission is intended solely for the use of the intended recipient.
+</div>
+</body>
+</html>
+------=_Part_99182_4829104.1727507564--

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,18 +8,29 @@ datasource db {
 
 // ──────────────────────────────────────────────
 // Users table
-// Stores registered platform users.
+// Supports role-based access: STUDENT, INSTRUCTOR, ADMIN.
+// Includes gamification: XP, level, rank title, streaks, and cohorts.
 // ──────────────────────────────────────────────
 model User {
-  id        String   @id @default(uuid())
-  username  String   @unique
-  email     String   @unique
-  password  String   // bcrypt hash
-  role      Role     @default(STUDENT)
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id           String   @id @default(uuid())
+  username     String   @unique
+  email        String   @unique
+  password     String   // bcrypt hash
+  role         Role     @default(STUDENT)
+  xp           Int      @default(0)
+  level        Int      @default(1)
+  rankTitle    String   @default("Initiate Operator") @map("rank_title")
+  streakDays   Int      @default(1) @map("streak_days")
+  lastActiveAt DateTime @default(now()) @map("last_active_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
 
-  activeSessions ActiveSession[]
+  activeSessions   ActiveSession[]
+  taskSubmissions  TaskSubmission[]
+  badges           StudentBadge[]
+  notes            StudentNote[]
+  instructedCohorts Cohort[]         @relation("InstructorCohorts")
+  enrolledCohorts   CohortStudent[]
 
   @@map("users")
 }
@@ -35,25 +43,29 @@ enum Role {
 
 // ──────────────────────────────────────────────
 // Lab Definitions table
-// Catalog of available labs/scenarios that can
-// be launched. Each row is a template, not a
-// running instance.
+// Catalog of available labs/scenarios.
 // ──────────────────────────────────────────────
 model LabDefinition {
-  id          String       @id @default(uuid())
-  name        String       @unique
-  description String?
-  dockerImage String       @map("docker_image")    // e.g. "vulnerables/web-dvwa:latest"
-  category    String?                               // e.g. "Web Exploitation", "Privilege Escalation"
-  difficulty  Difficulty   @default(BEGINNER)
-  exposedPort Int          @map("exposed_port")     // port the vulnerable service listens on inside the container
-  protocol    Protocol     @default(TCP)            // TCP for xterm/shell, VNC for desktop
-  cpuLimit    String       @default("500m") @map("cpu_limit")   // K8s CPU limit
-  memLimit    String       @default("256Mi") @map("mem_limit")  // K8s memory limit
-  createdAt   DateTime     @default(now()) @map("created_at")
-  updatedAt   DateTime     @updatedAt @map("updated_at")
+  id             String     @id @default(uuid())
+  name           String     @unique
+  description    String?
+  dockerImage    String     @map("docker_image")    // e.g. "cyber-range-gui:latest"
+  category       String?                            // e.g. "Web Exploitation", "Workstation & Tooling"
+  difficulty     Difficulty @default(BEGINNER)
+  exposedPort    Int        @map("exposed_port")    // port service listens on
+  protocol       Protocol   @default(TCP)           // TCP for xterm/shell, VNC for desktop
+  cpuLimit       String     @default("500m") @map("cpu_limit")
+  memLimit       String     @default("256Mi") @map("mem_limit")
+  mitreTactic    String?    @map("mitre_tactic")    // e.g. "Initial Access", "Execution"
+  mitreTechnique String?    @map("mitre_technique") // e.g. "T1190"
+  createdAt      DateTime   @default(now()) @map("created_at")
+  updatedAt      DateTime   @updatedAt @map("updated_at")
 
   activeSessions ActiveSession[]
+  tasks          LabTask[]
+  modules        Module[]
+  notes          StudentNote[]
+  assignments    CohortAssignment[]
 
   @@map("lab_definitions")
 }
@@ -67,13 +79,12 @@ enum Difficulty {
 
 enum Protocol {
   TCP   // Terminal-based (xterm.js via WebSocket)
-  VNC   // Desktop-based (KasmVNC)
+  VNC   // Desktop-based (KasmVNC / noVNC)
 }
 
 // ──────────────────────────────────────────────
 // Active Sessions table
-// Tracks every running lab instance. One row per
-// user-lab pair that is currently spun up in K3s.
+// Tracks every running lab instance with TTL.
 // ──────────────────────────────────────────────
 model ActiveSession {
   id            String        @id @default(uuid())
@@ -81,25 +92,190 @@ model ActiveSession {
   labId         String        @map("lab_id")
   k8sNamespace  String        @map("k8s_namespace")    // e.g. "lab-<session-uuid>"
   k8sPodName    String?       @map("k8s_pod_name")
-  traefikUrl    String?       @map("traefik_url")       // e.g. "ws://lab-<id>.local"
+  traefikUrl    String?       @map("traefik_url")       // e.g. "http://192.168.19.134:3xxxx/..."
   status        SessionStatus @default(PENDING)
   startedAt     DateTime      @default(now()) @map("started_at")
+  expiresAt     DateTime?     @map("expires_at")        // TTL expiration timestamp
   stoppedAt     DateTime?     @map("stopped_at")
 
   user User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   lab  LabDefinition @relation(fields: [labId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, labId])  // A user can only have one active instance of a given lab
+  @@unique([userId, labId])
   @@index([userId])
   @@index([status])
   @@map("active_sessions")
 }
 
 enum SessionStatus {
-  PENDING     // K8s manifest applied, waiting for pod
-  CREATING    // Pod is being pulled/created
-  RUNNING     // Pod is running, Traefik URL is live
-  STOPPING    // Teardown initiated
-  STOPPED     // Resources deleted
-  ERROR       // Something went wrong
+  PENDING
+  CREATING
+  RUNNING
+  STOPPING
+  STOPPED
+  ERROR
+}
+
+// ──────────────────────────────────────────────
+// Learning Academy: Structured Learning Paths
+// ──────────────────────────────────────────────
+model LearningPath {
+  id          String      @id @default(uuid())
+  title       String
+  slug        String      @unique
+  description String
+  icon        String      @default("🌐")
+  difficulty  Difficulty  @default(BEGINNER)
+  order       Int         @default(1)
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+
+  modules     Module[]
+  assignments CohortAssignment[]
+
+  @@map("learning_paths")
+}
+
+model Module {
+  id               String        @id @default(uuid())
+  learningPathId   String        @map("learning_path_id")
+  labDefinitionId  String?       @map("lab_definition_id")
+  title            String
+  description      String
+  order            Int           @default(1)
+  estimatedMinutes Int           @default(30) @map("estimated_minutes")
+  createdAt        DateTime      @default(now()) @map("created_at")
+  updatedAt        DateTime      @updatedAt @map("updated_at")
+
+  learningPath LearningPath   @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  lab          LabDefinition? @relation(fields: [labDefinitionId], references: [id], onDelete: SetNull)
+
+  @@map("modules")
+}
+
+// ──────────────────────────────────────────────
+// In-Lab Mission Objectives & Multi-Type Evidence
+// ──────────────────────────────────────────────
+model LabTask {
+  id              String         @id @default(uuid())
+  labDefinitionId String         @map("lab_definition_id")
+  title           String
+  description     String
+  hints           String[]       @default([])
+  flag            String         // Expected flag string e.g. "FLAG{...}" or regex/value
+  answerType      String         @default("FLAG") @map("answer_type") // FLAG, HASH, IP_ADDRESS, REGEX, STRING
+  mitreTechnique  String?        @map("mitre_technique")              // e.g. "T1059.004", "T1046"
+  points          Int            @default(50)
+  order           Int            @default(1)
+  createdAt       DateTime       @default(now()) @map("created_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
+
+  lab         LabDefinition    @relation(fields: [labDefinitionId], references: [id], onDelete: Cascade)
+  submissions TaskSubmission[]
+
+  @@map("lab_tasks")
+}
+
+model TaskSubmission {
+  id             String   @id @default(uuid())
+  userId         String   @map("user_id")
+  taskId         String   @map("task_id")
+  submittedFlag  String   @map("submitted_flag")
+  isCorrect      Boolean  @default(false) @map("is_correct")
+  awardedPoints  Int      @default(0) @map("awarded_points")
+  hintsUsedCount Int      @default(0) @map("hints_used_count")
+  pointsDeducted Int      @default(0) @map("points_deducted")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  user User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task LabTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, taskId])
+  @@index([userId])
+  @@map("task_submissions")
+}
+
+// ──────────────────────────────────────────────
+// Gamification: Badges & Achievements
+// ──────────────────────────────────────────────
+model StudentBadge {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  code        String   // e.g. "FIRST_BLOOD", "DESKTOP_VIRTUOSO"
+  title       String
+  description String
+  icon        String   @default("🎖️")
+  awardedAt   DateTime @default(now()) @map("awarded_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, code])
+  @@index([userId])
+  @@map("student_badges")
+}
+
+// ──────────────────────────────────────────────
+// In-Lab Operator Notes (Scratchpad)
+// ──────────────────────────────────────────────
+model StudentNote {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  labId     String   @map("lab_id")
+  content   String   @default("")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lab  LabDefinition @relation(fields: [labId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, labId])
+  @@index([userId])
+  @@map("student_notes")
+}
+
+// ──────────────────────────────────────────────
+// Instructor Cohorts & Class Assignments
+// ──────────────────────────────────────────────
+model Cohort {
+  id           String   @id @default(uuid())
+  name         String
+  description  String?
+  code         String   @unique // e.g. "CYBER-401"
+  instructorId String   @map("instructor_id")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  instructor  User               @relation("InstructorCohorts", fields: [instructorId], references: [id], onDelete: Cascade)
+  students    CohortStudent[]
+  assignments CohortAssignment[]
+
+  @@map("cohorts")
+}
+
+model CohortStudent {
+  id       String   @id @default(uuid())
+  cohortId String   @map("cohort_id")
+  userId   String   @map("user_id")
+  joinedAt DateTime @default(now()) @map("joined_at")
+
+  cohort Cohort @relation(fields: [cohortId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([cohortId, userId])
+  @@map("cohort_students")
+}
+
+model CohortAssignment {
+  id             String    @id @default(uuid())
+  cohortId       String    @map("cohort_id")
+  labId          String?   @map("lab_id")
+  learningPathId String?   @map("learning_path_id")
+  title          String
+  dueDate        DateTime? @map("due_date")
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  cohort       Cohort         @relation(fields: [cohortId], references: [id], onDelete: Cascade)
+  lab          LabDefinition? @relation(fields: [labId], references: [id], onDelete: SetNull)
+  learningPath LearningPath?  @relation(fields: [learningPathId], references: [id], onDelete: SetNull)
+
+  @@map("cohort_assignments")
 }

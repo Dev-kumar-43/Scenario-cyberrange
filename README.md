@@ -57,6 +57,12 @@ npm run dev
 2. **Backend**: Acts as the Orchestrator. When a lab is requested, it provisions a new Kubernetes Namespace, Deployment, and Service.
 3. **WebSockets**: When opening a terminal, the frontend establishes a WebSocket connection to the backend (`ws://localhost:3001/api/terminal`). The backend proxies this directly into the target pod using the Kubernetes Exec API.
 
+## Documentation
+
+For a deep engineering breakdown of the containerized Kali AttackBox, resource consumption, and a complete Kubernetes / K3s operator handbook, see:
+- [Startup & Operations Manual](docs/PROJECT_STARTUP_AND_OPERATIONS_MANUAL.md)
+- [Kali Workstation Architecture & Kubernetes Operator Guide](docs/KALI_WORKSTATION_ARCHITECTURE_AND_KUBERNETES_GUIDE.md)
+
 ## License
 
 ISC

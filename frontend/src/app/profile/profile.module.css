@@ -1,0 +1,339 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Page Header */
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.pageTitle {
+  font-size: 32px;
+  letter-spacing: -1.1px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.pageSub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* 4-Tile Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 8px;
+}
+
+.statCard {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statNumber {
+  font-size: 28px;
+  letter-spacing: -0.7px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.statLabel {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Header Dossier Banner */
+.profileBanner {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.avatarLarge {
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  background: var(--blue);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 24px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(46, 76, 109, 0.25);
+}
+
+.bannerInfo {
+  flex: 1;
+}
+
+.bannerName {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 4px 0 8px;
+  letter-spacing: -0.5px;
+}
+
+.bannerMeta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* XP Card */
+.xpCard {
+  min-width: 260px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--sky);
+  border: 1px solid #cbd5e1;
+}
+
+.xpCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.xpTrack {
+  height: 7px;
+  border-radius: 4px;
+  background: #d4e0ec;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.xpFill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.xpFooter {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Two Column Layout */
+.twoCol {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+}
+
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.sectionHead h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Skill Table */
+.tableWrap {
+  overflow-x: auto;
+}
+
+.skillTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.skillTable th {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.skillTable td {
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+
+/* MITRE Matrix Grid */
+.mitreMatrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.matrixCell {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.matrixCell:hover {
+  border-color: #b5c7d8;
+  background: var(--sky);
+}
+
+.matrixCellDone {
+  background: #f0fdf4 !important;
+  border-color: #86efac !important;
+}
+
+.matrixCode {
+  font-size: 11px;
+  font-family: monospace;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.matrixTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.matrixStatus {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* Badges / Achievements Grid */
+.achievementGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.achievementCard {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--bg-card);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: all 0.18s ease;
+}
+
+.achievementCard:hover {
+  border-color: #b5c7d8;
+}
+
+.achievementCardLocked {
+  opacity: 0.65;
+  background: #eef2f7;
+}
+
+/* Activity Rows */
+.activityRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.activityRow:last-child {
+  border-bottom: none;
+}
+
+.activityLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.activityTitle {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.activityMeta {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.xpPill {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green-bg);
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+@media (max-width: 960px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .twoCol {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  .profileBanner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .xpCard {
+    width: 100%;
+  }
+}

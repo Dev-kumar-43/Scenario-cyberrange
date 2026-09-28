@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 1440" width="2560" height="1440">
+  <defs>
+    <!-- Background Gradient: Ubuntu Aubergine -->
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="75%" fx="50%" fy="45%">
+      <stop offset="0%" stop-color="#3C1631" />
+      <stop offset="40%" stop-color="#2C1021" />
+      <stop offset="100%" stop-color="#1A0A14" />
+    </radialGradient>
+
+    <!-- Warm Accent Glow -->
+    <radialGradient id="glowOrange" cx="50%" cy="48%" r="40%">
+      <stop offset="0%" stop-color="#E95420" stop-opacity="0.06" />
+      <stop offset="60%" stop-color="#C7340F" stop-opacity="0.02" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="glowWarm" cx="35%" cy="55%" r="35%">
+      <stop offset="0%" stop-color="#77216F" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Accent Strokes -->
+    <linearGradient id="circleStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E95420" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#C7340F" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#77216F" stop-opacity="0.3" />
+    </linearGradient>
+
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F2E7ED" />
+      <stop offset="70%" stop-color="#B8A1AD" />
+      <stop offset="100%" stop-color="#8C7080" />
+    </linearGradient>
+
+    <!-- Subtle Grid Pattern -->
+    <pattern id="gridPattern" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 L 0 64" fill="none" stroke="#E95420" stroke-width="0.5" stroke-opacity="0.025" />
+    </pattern>
+
+    <!-- Dot Matrix -->
+    <pattern id="dotGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="16" cy="16" r="0.8" fill="#B8A1AD" fill-opacity="0.035" />
+    </pattern>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="2560" height="1440" fill="url(#bgGrad)" />
+  <rect width="2560" height="1440" fill="url(#gridPattern)" />
+  <rect width="2560" height="1440" fill="url(#dotGrid)" />
+  <rect width="2560" height="1440" fill="url(#glowOrange)" />
+  <rect width="2560" height="1440" fill="url(#glowWarm)" />
+
+  <!-- Corner Accents -->
+  <path d="M 60 100 L 60 60 L 100 60" fill="none" stroke="#E95420" stroke-width="1.5" stroke-opacity="0.15" />
+  <path d="M 2500 100 L 2500 60 L 2460 60" fill="none" stroke="#E95420" stroke-width="1.5" stroke-opacity="0.15" />
+  <path d="M 60 1340 L 60 1380 L 100 1380" fill="none" stroke="#E95420" stroke-width="1.5" stroke-opacity="0.15" />
+  <path d="M 2500 1340 L 2500 1380 L 2460 1380" fill="none" stroke="#E95420" stroke-width="1.5" stroke-opacity="0.15" />
+
+  <!-- Top Center Header -->
+  <g opacity="0.25">
+    <line x1="1080" y1="60" x2="1480" y2="60" stroke="#E95420" stroke-width="1" />
+    <circle cx="1080" cy="60" r="2.5" fill="#E95420" />
+    <circle cx="1480" cy="60" r="2.5" fill="#E95420" />
+    <text x="1280" y="52" text-anchor="middle" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-size="10" fill="#E95420" letter-spacing="4">INTERNAL NETWORK // TARGET WORKSTATION</text>
+  </g>
+
+  <!-- Center Logo & Branding -->
+  <g transform="translate(1280, 680)" opacity="0.85">
+    <!-- Decorative Rings -->
+    <circle cx="0" cy="-60" r="140" fill="none" stroke="#E95420" stroke-width="1" stroke-opacity="0.08" stroke-dasharray="6, 8" />
+    <circle cx="0" cy="-60" r="115" fill="none" stroke="#77216F" stroke-width="1" stroke-opacity="0.12" />
+
+    <!-- Ubuntu Circle of Friends (stylized) -->
+    <g transform="translate(0, -60)">
+      <!-- Main Circle -->
+      <circle cx="0" cy="0" r="55" fill="none" stroke="url(#circleStroke)" stroke-width="3" />
+
+      <!-- Three Friend Dots (Ubuntu logo concept) -->
+      <!-- Top -->
+      <circle cx="0" cy="-48" r="12" fill="#2C1021" stroke="#E95420" stroke-width="2.5" />
+      <circle cx="0" cy="-48" r="5" fill="#E95420" />
+      <!-- Bottom-Left -->
+      <circle cx="-41.5" cy="24" r="12" fill="#2C1021" stroke="#E95420" stroke-width="2.5" />
+      <circle cx="-41.5" cy="24" r="5" fill="#E95420" />
+      <!-- Bottom-Right -->
+      <circle cx="41.5" cy="24" r="12" fill="#2C1021" stroke="#E95420" stroke-width="2.5" />
+      <circle cx="41.5" cy="24" r="5" fill="#E95420" />
+
+      <!-- Inner connecting arcs (simplified) -->
+      <path d="M -8 -40 A 40 40 0 0 0 -36 16" fill="none" stroke="#E95420" stroke-width="1.5" stroke-opacity="0.4" />
+      <path d="M 8 -40 A 40 40 0 0 1 36 16" fill="none" stroke="#E95420" stroke-width="1.5" stroke-opacity="0.4" />
+      <path d="M -32 32 A 40 40 0 0 0 32 32" fill="none" stroke="#E95420" stroke-width="1.5" stroke-opacity="0.4" />
+    </g>
+
+    <!-- Typography -->
+    <text x="0" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700" font-size="34" fill="url(#textGrad)" letter-spacing="10">CYBER RANGE</text>
+
+    <!-- Subtitle -->
+    <rect x="-160" y="115" width="320" height="26" rx="4" fill="#2C1021" fill-opacity="0.6" stroke="#E95420" stroke-width="1" stroke-opacity="0.3" />
+    <text x="0" y="132" text-anchor="middle" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-weight="500" font-size="12" fill="#E95420" letter-spacing="4">CORPORATE WORKSTATION</text>
+
+    <text x="0" y="168" text-anchor="middle" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-size="11" fill="#8C7080" letter-spacing="2">TARGET NODE • INTERNAL NETWORK • AUDIT READY</text>
+  </g>
+
+  <!-- Bottom Left -->
+  <g transform="translate(70, 1370)" opacity="0.35">
+    <text x="0" y="0" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-size="11" fill="#B8A1AD" letter-spacing="2">HOST: UBUNTU-TARGET // DISP: :0 // VNC-RANDR ENABLED</text>
+  </g>
+
+  <!-- Bottom Right -->
+  <g transform="translate(2490, 1370)" opacity="0.35">
+    <text x="0" y="0" text-anchor="end" font-family="'JetBrains Mono', 'Hack', 'Courier New', monospace" font-size="11" fill="#B8A1AD" letter-spacing="2">NETWORK STATUS: ISOLATED // INTERNAL ONLY</text>
+    <circle cx="15" cy="-4" r="3.5" fill="#E95420" />
+  </g>
+</svg>

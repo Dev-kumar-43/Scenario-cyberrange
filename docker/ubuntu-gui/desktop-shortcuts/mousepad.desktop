@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Text Editor
+Comment=Simple text editor for notes and configs
+Exec=mousepad %U
+Icon=accessories-text-editor
+Terminal=false
+StartupNotify=true
+Categories=Utility;TextEditor;
+MimeType=text/plain;

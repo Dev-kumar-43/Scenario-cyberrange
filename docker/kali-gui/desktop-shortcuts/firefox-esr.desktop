@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Firefox Web Browser
+Comment=Browse the World Wide Web and Web Targets
+Exec=/usr/bin/firefox-esr %u
+Icon=firefox-esr
+Terminal=false
+StartupNotify=true
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;
